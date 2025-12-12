@@ -37,12 +37,23 @@ A lightweight Gemini-inspired chat client built with React, TypeScript, and Vite
 
 ## Deploying to GitHub Pages
 
-This project ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds the site and publishes it to GitHub Pages whenever you push to the `main` branch.
+1. Build the site with the correct base path for your repository:
 
-1. Push the repository to GitHub and ensure the default branch is named `main` (adjust the workflow trigger if you prefer a different branch).
-2. In your repository settings, enable GitHub Pages and choose **GitHub Actions** as the source. The next push to `main` will build and deploy automatically.
-3. The workflow sets `BASE_PATH` to `/<repository-name>/` during the build so the Vite `base` matches the Pages subdirectory. If you later serve the site from a custom domain, update or remove the `BASE_PATH` environment variable in the workflow accordingly.
-4. Once the workflow succeeds, your site will be available at `https://<username>.github.io/<repository-name>/` (or your configured custom domain).
+   ```bash
+   BASE_PATH=/gemini-playground/ npm run build
+   ```
+
+   Replace `gemini-playground` with your repository name if it differs.
+
+2. Copy the build output into a `docs/` folder so GitHub Pages can serve it:
+
+   ```bash
+   rm -rf docs
+   cp -R dist docs
+   ```
+
+3. Commit the `docs/` folder and push to `main`.
+4. In GitHub → **Settings → Pages**, choose **main** as the branch and **/docs** for the folder. Your site will be available at `https://<username>.github.io/<repository-name>/` once the push completes.
 
 ## Features
 
