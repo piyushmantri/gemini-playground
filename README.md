@@ -35,6 +35,15 @@ A lightweight Gemini-inspired chat client built with React, TypeScript, and Vite
 - `npm run build` - Type-check the project and produce a production build in `dist/`.
 - `npm run preview` - Preview the production build locally.
 
+## Deploying to GitHub Pages
+
+This project ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds the site and publishes it to GitHub Pages whenever you push to the `main` branch.
+
+1. Push the repository to GitHub and ensure the default branch is named `main` (adjust the workflow trigger if you prefer a different branch).
+2. In your repository settings, enable GitHub Pages and choose **GitHub Actions** as the source. The next push to `main` will build and deploy automatically.
+3. The workflow sets `BASE_PATH` to `/<repository-name>/` during the build so the Vite `base` matches the Pages subdirectory. If you later serve the site from a custom domain, update or remove the `BASE_PATH` environment variable in the workflow accordingly.
+4. Once the workflow succeeds, your site will be available at `https://<username>.github.io/<repository-name>/` (or your configured custom domain).
+
 ## Features
 
 - Gemini-like chat layout with sidebar, conversation header, and composer.
