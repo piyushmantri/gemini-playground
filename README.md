@@ -62,3 +62,4 @@ This project ships with a GitHub Actions workflow (`.github/workflows/deploy.yml
 - Image previews are returned as base64 data URLs. Use Google AI Studio if you need permanent hosting of generated assets.
 - Video responses are streamed as blob URLs in the browser. Download the file or open the signed URI (with your API key appended) to access it again later.
 - Veo currently supports 720p clips between 5-8 seconds. The UI enforces these limits.
+  
