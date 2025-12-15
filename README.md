@@ -59,7 +59,7 @@ A lightweight Gemini-inspired chat client built with React, TypeScript, and Vite
 
 - Gemini-like chat layout with sidebar, conversation header, and composer.
 - Image generation using `models/gemini-3-pro-image-preview` with inline previews.
-- Video generation targeting the Veo preview model (`veo-3.1-generate-001`) with downloadable results.
+- Video generation targeting selectable Veo preview models (`veo-3.1-generate-preview`, `veo-3.1-generate-001`, `veo-3.0-generate-001`, `veo-3.0-generate-preview`, `veo-2.0-generate-001`, `veo-2.0-generate-preview`) with downloadable results.
 - Optional reference image upload to guide Veo's output.
 - Rich Markdown rendering for any textual context Gemini returns.
 - Animated typing indicator while awaiting Gemini responses.
@@ -69,7 +69,7 @@ A lightweight Gemini-inspired chat client built with React, TypeScript, and Vite
 ## Notes
 
 - Messages and the API key are kept locally in the browser. Refreshing the page clears the conversation history but retains the key until you remove it.
-- The default image model is `models/gemini-3-pro-image-preview` and the default video model is `veo-3.1-generate-001`. Adjust the constants in `src/App.tsx` to explore other releases.
+- The default image model is `models/gemini-3-pro-image-preview` and the default video model is `veo-3.1-generate-001`. Pick a different Veo preview model from the dropdown in the video composer to explore other releases.
 - Image previews are returned as base64 data URLs. Use Google AI Studio if you need permanent hosting of generated assets.
 - Video responses are streamed as blob URLs in the browser. Download the file or open the signed URI (with your API key appended) to access it again later.
 - Veo currently supports 720p clips between 5-8 seconds. The UI enforces these limits.

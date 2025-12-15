@@ -34,7 +34,16 @@ type Message = {
 }
 
 const IMAGE_MODEL_ID = 'models/gemini-3-pro-image-preview'
-const VIDEO_MODEL_ID = 'veo-3.1-generate-001'
+const VIDEO_MODELS = [
+  'veo-3.1-generate-preview',
+  'veo-3.1-generate-001',
+  'veo-3.0-generate-001',
+  'veo-3.0-generate-preview',
+  'veo-2.0-generate-001',
+  'veo-2.0-generate-preview',
+] as const
+type VideoModelId = (typeof VIDEO_MODELS)[number]
+const DEFAULT_VIDEO_MODEL_ID: VideoModelId = 'veo-3.1-generate-001'
 const STORAGE_KEY = 'geminiChatApiKey'
 const VIDEO_POLL_INTERVAL = 8000
 const MAX_VIDEO_POLLS = 45
@@ -116,6 +125,7 @@ function App() {
   const [videoAspectRatio, setVideoAspectRatio] = useState('16:9')
   const [videoResolution, setVideoResolution] = useState('720p')
   const [videoDuration, setVideoDuration] = useState(6)
+  const [videoModelId, setVideoModelId] = useState<VideoModelId>(DEFAULT_VIDEO_MODEL_ID)
   const [videoReferenceImage, setVideoReferenceImage] = useState<ReferenceImageState | null>(null)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
   const videoMessagesRef = useRef<Message[]>([])
@@ -409,7 +419,7 @@ function App() {
         config: typeof config
         image?: { imageBytes: string; mimeType: string }
       } = {
-        model: VIDEO_MODEL_ID,
+        model: videoModelId,
         prompt: trimmed,
         config,
       }
@@ -524,6 +534,7 @@ function App() {
     setVideoPrompt('')
     setVideoStatus(null)
     setVideoReferenceImage(null)
+    setVideoModelId(DEFAULT_VIDEO_MODEL_ID)
     setIsApiKeyModalOpen(false)
   }
 
@@ -542,6 +553,7 @@ function App() {
     setVideoPrompt('')
     setVideoStatus(null)
     setVideoReferenceImage(null)
+    setVideoModelId(DEFAULT_VIDEO_MODEL_ID)
     setIsApiKeyModalOpen(true)
   }
 
@@ -587,7 +599,7 @@ function App() {
   const sidebarHint =
     activeTab === 'image'
       ? 'Generate image previews with Gemini. Provide a descriptive text prompt and see the inline preview.'
-      : 'Generate short 720p videos with the Veo preview model. Describe the motion you want, keep clips between 5-8 seconds, and optionally add a reference image.'
+      : 'Generate short 720p videos with Veo preview models. Choose a model, describe the motion you want, keep clips between 5-8 seconds, and optionally add a reference image.'
 
   const messagesToDisplay = activeTab === 'image' ? imageMessages : videoMessages
   const activeError = activeTab === 'image' ? imageError : videoError
@@ -815,6 +827,20 @@ function App() {
                 rows={TEXTAREA_LINES}
               />
               <div className="video-options">
+                <label className="video-option">
+                  <span>Model</span>
+                  <select
+                    value={videoModelId}
+                    onChange={(event) => setVideoModelId(event.target.value as VideoModelId)}
+                    disabled={isVideoFormDisabled}
+                  >
+                    {VIDEO_MODELS.map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </select>
+                </label>
                 <label className="video-option">
                   <span>Resolution</span>
                   <select
