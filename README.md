@@ -59,7 +59,7 @@ A lightweight Gemini-inspired chat client built with React, TypeScript, and Vite
 
 - Gemini-like chat layout with sidebar, conversation header, and composer.
 - Image generation using `models/gemini-3-pro-image-preview` with inline previews.
-- Video generation targeting selectable Veo preview models (`veo-3.1-generate-preview`, `veo-3.1-generate-001`, `veo-3.0-generate-001`, `veo-3.0-generate-preview`, `veo-2.0-generate-001`, `veo-2.0-generate-preview`) with downloadable results.
+- Video generation targeting selectable Veo preview models (`veo-3.1-generate-preview`, `veo-3.1-generate-001`, `veo-3.0-generate-001`, `veo-2.0-generate-001`) with downloadable results.
 - Optional reference image upload to guide Veo's output.
 - Rich Markdown rendering for any textual context Gemini returns.
 - Animated typing indicator while awaiting Gemini responses.
