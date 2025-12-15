@@ -34,7 +34,7 @@ type Message = {
 }
 
 const IMAGE_MODEL_ID = 'models/gemini-3-pro-image-preview'
-const VIDEO_MODEL_ID = 'veo-2.0-generate-001'
+const VIDEO_MODEL_ID = 'veo-3.1-generate-001'
 const STORAGE_KEY = 'geminiChatApiKey'
 const VIDEO_POLL_INTERVAL = 8000
 const MAX_VIDEO_POLLS = 45
